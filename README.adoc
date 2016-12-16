@@ -1,0 +1,219 @@
+---
+tags: [rest]
+projects: [spring-framework]
+experimental: Try the code inside your browser with -> http://beta.codenvy.com/f?id=9fq0busbm3tz7i8c
+---
+:spring_version: current
+:toc:
+:project_id: gs-rest-service
+:spring_version: current
+:spring_boot_version: 1.4.1.RELEASE
+:icons: font
+:source-highlighter: prettify
+
+This guide walks you through the process of creating a "hello world" link:/understanding/REST[RESTful web service] with Spring.
+
+== What you'll build
+
+You'll build a service that will accept HTTP GET requests at:
+
+----
+http://localhost:8080/
+----
+
+and respond with a link:/understanding/JSON[JSON] representation of a greeting:
+
+[source,json]
+----
+Hello World!
+----
+
+You can call URL's of employee service like below. Which will return all employees.
+
+----
+GET http://localhost:8080/rest/emp/
+----
+
+
+The response:
+
+[source,json]
+----
+
+[
+  {
+    "id": 1,
+    "name": "Sachin Tendulkar",
+    "designation": "Batsman",
+    "salary": 100000
+  },
+  {
+    "id": 2,
+    "name": "Mahendra Singh Dhoni",
+    "designation": "Batsman / W & C",
+    "salary": 80000
+  },
+  {
+    "id": 3,
+    "name": "Virat Kohli",
+    "designation": "Vice Captain",
+    "salary": 70000
+  },
+  {
+    "id": 4,
+    "name": "Yuvraj Singh",
+    "designation": "Batsman",
+    "salary": 60000
+  },
+  {
+    "id": 5,
+    "name": "R Ashwin",
+    "designation": "Offbreak bowler",
+    "salary": 60000
+  },
+  {
+    "id": 6,
+    "name": "Virendra Sehwagh",
+    "designation": "Batsman",
+    "salary": 50000
+  },
+  {
+    "id": 7,
+    "name": "Ajay Kumar (Jadeja)",
+    "designation": "Batsman",
+    "salary": 60000
+  },
+  {
+    "id": 8,
+    "name": "Anjikya Rahane",
+    "designation": "Batsman",
+    "salary": 50000
+  },
+  {
+    "id": 9,
+    "name": "Bhuvaneshwar Kumar",
+    "designation": "Medium Fast Bowler",
+    "salary": 50000
+  },
+  {
+    "id": 10,
+    "name": "Mohammed Shami",
+    "designation": "Medium Fast Bowler",
+    "salary": 40000
+  },
+  {
+    "id": 11,
+    "name": "Hardik Pandya",
+    "designation": "Medium Fast Bowler",
+    "salary": 30000
+  }
+]
+----
+
+You can get a resource with its Id as below.
+
+----
+GET http://localhost:8080/rest/emp/1
+----
+
+
+The response:
+
+[source,json]
+----
+{
+  "id": 1,
+  "name": "Sachin Tendulkar",
+  "designation": "Batsman",
+  "salary": 100000
+}
+----
+
+Similary you can delete a resource with HTTP DELETE method, for deleting you need an Id of the resource.
+
+----
+DELETE http://localhost:8080/rest/emp/1
+----
+
+
+The response will be the id of the deleted resource:
+
+[source,json]
+----
+1
+----
+
+If you want add a resource you should use HTTP PUT method as below. You should not send id in the URL and you should supply the data/object in the json format as below
+
+----
+PUT http://localhost:8080/rest/emp/
+----
+[source, json]
+----
+{
+  "id": 1,
+  "name": "Sachin Tendulkar",
+  "designation": "Batsman",
+  "salary": 100000
+}
+----
+
+
+The response will be the id of the created resource:
+
+[source,json]
+----
+1
+----
+
+
+If you want update a resource you should use HTTP POST method as below. You should send id in the URL and you should supply the data/object in the json format as below
+
+----
+POST http://localhost:8080/rest/emp/4
+----
+[source, json]
+----
+{
+  "id": 4,
+  "name": "Sachin Tendulkar",
+  "designation": "Batsman",
+  "salary": 100000
+}
+----
+
+
+The response will be the created resource:
+
+[source,json]
+----
+{
+  "id": 4,
+  "name": "Sachin Tendulkar",
+  "designation": "Batsman",
+  "salary": 100000
+}
+----
+
+
+== What you'll need
+
+:java_version: 1.8
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
+
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-gradle.adoc[]
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-maven.adoc[]
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-sts.adoc[]
+
+
+
+== Summary
+
+Congratulations! You've just developed a RESTful web service with Spring. 
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
